@@ -3,7 +3,7 @@ import * as React from "react";
 import {
   Create, Datagrid,
   DeleteButton, Edit, EditButton,
-  List,
+  ImageField,ImageInput,List,
   SimpleForm,
   TextField,NumberField,ReferenceField,
   TextInput,ReferenceInput,NumberInput,SelectInput,
@@ -17,6 +17,7 @@ export const CoupuresList = (props) => {
   return (
     <List {...props}>
       <Datagrid>
+        <ImageField label="Image" source="image.src" title="nom" className="money"/>
         <TextField source="nom" label="Nom"/>
         <NumberField source="valeur" label="Valeur"/>
         <ReferenceField label="Devise" source="deviseId" reference="devises" link={false}>
@@ -35,13 +36,16 @@ export const CoupuresEdit = (props) => {
   return (
     <Edit mutationMode="pessimistic" title="Modifier Coupure" {...props}>
       <SimpleForm>
-        <TextInput disabled source="id" />
+        <TextInput disabled source="id" fullWidth/>
         <TextInput source="nom" label="Nom" fullWidth />
         <NumberInput source="valeur" label="Valeur" fullWidth />
         <ReferenceInput label="Devise" source="deviseId" reference="devises" fullWidth>
           <SelectInput optionText={record => `${record.nom}, ${record.code}`} />
         </ReferenceInput>
         <TextInput source="deviseId" label="Devise ID" fullWidth disabled />
+        <ImageInput label="Image" source="image" accept="image/*" placeholder={<p>Choisir l'image de la Monnaie</p>}>
+          <ImageField source="src" title="title" />
+        </ImageInput>
       </SimpleForm>
     </Edit>
   );
@@ -57,6 +61,9 @@ export const CoupuresCreate = (props) => {
           <SelectInput optionText={record => `${record.nom}, ${record.code}`} />
         </ReferenceInput>
         <TextInput source="deviseId" label="Devise ID" fullWidth disabled />
+        <ImageInput label="Image" source="image" accept="image/*" placeholder={<p>Choisir l'image de la Monnaie</p>}>
+          <ImageField source="src" title="title" />
+        </ImageInput>
       </SimpleForm>
     </Create>
   );

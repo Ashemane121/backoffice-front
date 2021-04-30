@@ -8,6 +8,7 @@ import { CoupuresCreate, CoupuresEdit, CoupuresIcon, CoupuresList } from './comp
 import { DevisesCreate, DevisesEdit, DevisesIcon, DevisesList, DevisesShow } from './components/Devises';
 import { LigCaiBursCreate, LigCaiBursEdit, LigCaiBursIcon, LigCaiBursList } from './components/LigCaiBurs';
 import MyLoginPage from './components/MyLoginPage';
+import { PaysCreate, PaysEdit, PaysIcon, PaysList } from './components/Pays';
 import { ProduitsCreate, ProduitsEdit, ProduitsIcon, ProduitsList } from './components/Produits';
 import { UtiBureauCreate, UtiBureauEdit, UtiBureauIcon, UtiBureauList } from './components/Utibureaux';
 import { UtilisateursCreate, UtilisateursEdit, UtilisateursIcon, UtilisateursList } from './components/Utilisateurs';
@@ -108,6 +109,14 @@ function App() {
           create={CoupuresCreate}
           icon={CoupuresIcon}
           options={{ label: 'Coupures' }}
+        />
+        <Resource
+          name='pays'
+          list={PaysList}
+          edit={PaysEdit}
+          create={PaysCreate}
+          icon={PaysIcon}
+          options={{ label: 'Pays' }}
         />
       </Admin>
       {console.log(localStorage.getItem('decodedToken'))}

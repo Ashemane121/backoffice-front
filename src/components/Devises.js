@@ -5,7 +5,7 @@ import {
   Button,Link,TopToolbar,ListButton,Show,TabbedShowLayout,TabbedShowLayoutTabs,Tab,ReferenceManyField,NumberField,
   Create, Datagrid,
   DeleteButton, Edit, EditButton,
-  List,
+  ImageField,List,
   SimpleForm,ShowButton,
   TextInput,TextField,
   useAuthenticated
@@ -47,6 +47,7 @@ export const DevisesShow = (props) => {
         <Tab label="Coupures">
           <ReferenceManyField label="Coupures" reference="coupures" target="deviseId">
             <Datagrid fullWidth>
+              <ImageField label="Image" source="image.src" title="nom" className="money"/>
               <TextField source="nom" label="Nom"/>
               <NumberField source="valeur" label="Valeur"/>
               <EditButton basePath="/coupures" label="Modifier" />
