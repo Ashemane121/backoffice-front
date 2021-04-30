@@ -1,0 +1,29 @@
+.form-container {
+  margin: 50px auto;
+  padding:20px;
+  width: 350px;
+  box-shadow: 0px 3px 7px rgba(0,0,0,0.3);
+  position: relative;
+  border-radius: 10px;
+  text-align: center;
+  height: 500px;
+}
+
+.form-success {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 80px;
+}
+
+.error {
+  height:5px;
+  font-size: 12px;
+  color:#f00e0e;
+  padding :0px;
+  margin:0px;
+  text-align: left;
+}
+.error p {
+  position : relative;
+  top:-12px;
+}
