@@ -1,4 +1,5 @@
-import { Admin, Resource } from 'react-admin';
+import { Admin, Resource  } from 'react-admin';
+import { Route } from "react-router";
 import authProvider from './authProvider';
 import { AgencesCreate, AgencesEdit, AgencesIcon, AgencesList } from './components/Agences';
 import { AssociationCreate, AssociationEdit, AssociationIcon, AssociationList } from './components/Associations';
@@ -13,6 +14,10 @@ import { ProduitsCreate, ProduitsEdit, ProduitsIcon, ProduitsList } from './comp
 import { UtiBureauCreate, UtiBureauEdit, UtiBureauIcon, UtiBureauList } from './components/Utibureaux';
 import { UtilisateursCreate, UtilisateursEdit, UtilisateursIcon, UtilisateursList } from './components/Utilisateurs';
 import myDataProvider from './dataProvider';
+import Dashboard from './components/Dashboard';
+import { ProfileEdit } from './components/Profile'
+import MyLayout from './components/MyLayout';
+
 
 
 
@@ -22,10 +27,14 @@ function App() {
   return (
     <div>
       <Admin
+        title="Insight+"
+        dashboard={Dashboard}
         dataProvider={myDataProvider('http://localhost:5000')}
         authProvider={authProvider}
         loginPage={MyLoginPage}
-      //logoutButton={MyLogoutButton}
+        //logoutButton={MyLogoutButton}
+        appLayout={MyLayout}
+        
       >
         <Resource
           name='bureaux'
@@ -117,6 +126,9 @@ function App() {
           create={PaysCreate}
           icon={PaysIcon}
           options={{ label: 'Pays' }}
+        />
+        <Resource name="users"
+          edit={ProfileEdit}
         />
       </Admin>
       {console.log(localStorage.getItem('decodedToken'))}

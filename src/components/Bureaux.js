@@ -1,4 +1,5 @@
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import WorkIcon from '@material-ui/icons/Work';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
@@ -9,7 +10,7 @@ import {
   Button,
   Create, Datagrid,
   DeleteButton, Edit, EditButton, Link,
-  List, ListButton, NumberField, ReferenceManyField, Show,
+  List, ListButton, NumberField, ReferenceField, ReferenceManyField, Show,
   ShowButton,
   SimpleForm, Tab, TabbedShowLayout, TabbedShowLayoutTabs,
   TextField, TextInput,
@@ -19,7 +20,7 @@ import {
 
 
 
-export const BureauxIcon = AccountBalanceIcon;
+export const BureauxIcon = WorkIcon;
 
 const CreateUserButton = ({ record }) => (
   <Button
@@ -100,7 +101,9 @@ export const BureauxShow = (props) => {
         <Tab label="Ligne Caisses">
           <ReferenceManyField label="Lignes Caisses" reference="ligcaiburs" target="bureauId">
             <Datagrid fullWidth>
-              <TextField source="devise" />
+              <ReferenceField label="Devise" source="deviseId" reference="devises" link={false}>
+                <TextField source="nom" />
+              </ReferenceField>
               <NumberField source="montant" />
               <EditButton basePath="/ligcaiburs" label="Modifier" />
               <DeleteButton basePath="/ligcaiburs" label="Supprimer"  mutationMode="pessimistic"/>
@@ -121,16 +124,12 @@ export const BureauxList = (props) => {
   return (
     <List title="Bureaux de changes"{...props}>
       <Datagrid>
-        <ShowButton label="Afficher" />
+        <ShowButton label="Afficher"/>
         <TextField source="idbct" label="ID BCT" />
-        <TextField source="adresse" label="Adresse" />
         <TextField source="nombureau" label="Nom Bureau" />
-        <TextField source="nom" label="Nom" />
+        <TextField source="nom" label="Responsable" />
         <TextField source="prenom" label="Prenom" />
-        <TextField source="email" label="Email" />
-        <TextField source="cin" label="CIN" />
         <BooleanField source="actif" />
-        <BooleanField source="visible" />
         <CreateUserButton label="Utilisateurs" />
         <AssocierButton label="Produits" />
         <EditButton basePath="/bureaux" label="Modifier" />

@@ -1,7 +1,7 @@
-.container {
+.login-box {
   padding: 20px;
   height: '50vh';
-  width: 350px;
+  width: 330px;
   margin: 50px auto;
   text-align: center;
   position:relative;
@@ -11,4 +11,13 @@
 
 .icon {
   margin: 0 auto;
+}
+
+.logo-login{
+  padding:10px;
+  width:280px;
+}
+
+.logo-login img{
+  width:100%;
 }

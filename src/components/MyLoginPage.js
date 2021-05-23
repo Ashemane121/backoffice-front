@@ -1,9 +1,9 @@
 import { Avatar, Button, Link, TextField, Typography } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import * as React from 'react';
 import { useState } from 'react';
 import { Notification, useAuthState, useLogin, useNotify } from 'react-admin';
 import './Login.css';
+import Logo from '../img/insight.png';
 import AlreadyAuth from './Signup/AlreadyAuth';
 
 
@@ -32,9 +32,9 @@ const MyLoginPage = () => {
   } else {
     return (
       <div>
-        <div className='container'>
+        <div className='login-box'>
           <div>
-            <Avatar className='icon' style={{ backgroundColor: '#1bbd7e' }}><LockOutlinedIcon /></Avatar>
+            <div className="logo-login"><img src={Logo} alt="nope"/></div>
             <h2>Login</h2>
           </div>
           <form onSubmit={submit}>
@@ -56,13 +56,7 @@ const MyLoginPage = () => {
             />
             <Button type='submit' color='primary' variant="contained" style={{ margin: '8px 0' }} fullWidth>Se Connecter</Button>
           </form>
-          <Typography >
-            <Link href="#" >Forgot password ?</Link>
-          </Typography>
-          <Typography >
-            Do you have an account ?
-           <Link href="/signup" >Sign Up</Link>
-          </Typography>
+          
           <Notification />
         </div>
       </div>

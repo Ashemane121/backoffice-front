@@ -1,4 +1,4 @@
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import WorkIcon from '@material-ui/icons/Work';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import * as React from "react";
 import {
@@ -20,7 +20,7 @@ const AssocierButton = ({ record }) => (
     }}
   >
     <div>
-      <AccountBalanceIcon />
+      <WorkIcon />
     </div>
   </Button>
 );

@@ -21,7 +21,9 @@ export const LigCaiBursList = (props) => {
   return (
     <List title="Lignes Caisses des Bureaux de changes"{...props}>
       <Datagrid>
-        <TextField source="devise" label="Devise" />
+        <ReferenceField label="Devise" source="deviseId" reference="devises" link={false}>
+          <TextField source="nom" />
+        </ReferenceField>
         <NumberField source="montant" label="Montant" />
         <ReferenceField label="Bureau" source="bureauId" reference="bureaux" link="show">
           <TextField source="nombureau" />
@@ -33,22 +35,15 @@ export const LigCaiBursList = (props) => {
   );
 }
 
-const choices = [
-  { name: 'Dinar Tunisien' },
-  { name: 'Euro' },
-  { name: 'Pound' },
-  { name: 'Dollar' },
-];
-
 export const LigCaiBursEdit = (props) => {
   useAuthenticated();
   return (
     <Edit mutationMode="pessimistic" title="Modifier Ligne Caisse de Bureau de Change" {...props}>
       <SimpleForm>
         <TextInput source="id" disabled fullWidth />
-        <SelectInput source="devise" label="Devise" fullWidth
-          choices={choices} optionText={choice => `${choice.name}`} optionValue="name"
-        />
+        <ReferenceInput label="Devise" source="deviseId" reference="devises" fullWidth>
+          <SelectInput optionText={record => `${record.nom}, ${record.code}`} />
+        </ReferenceInput>
         <NumberInput source="montant" label="Montant" fullWidth />
         <ReferenceInput label="Bureau" source="bureauId" reference="bureaux" fullWidth>
           <SelectInput optionText="nombureau" />
@@ -64,9 +59,9 @@ export const LigCaiBursCreate = (props) => {
   return (
     <Create title="Créer Ligne Caisse de Bureau de Change" {...props}>
       <SimpleForm>
-        <SelectInput source="devise" label="Devise" fullWidth
-          choices={choices} optionText={choice => `${choice.name}`} optionValue="name"
-        />
+        <ReferenceInput label="Devise" source="deviseId" reference="devises" fullWidth>
+          <SelectInput optionText={record => `${record.nom}, ${record.code}`} />
+        </ReferenceInput>
         <NumberInput source="montant" label="Montant" fullWidth />
         <ReferenceInput label="Bureau" source="bureauId" reference="bureaux" fullWidth>
           <SelectInput optionText="nombureau" />
