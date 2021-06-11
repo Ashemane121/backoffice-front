@@ -9,6 +9,7 @@ import {
   BooleanInput,
   Button,
   Create, Datagrid,
+  DateField,
   DeleteButton, Edit, EditButton, Link,
   List, ListButton, NumberField, ReferenceField, ReferenceManyField, Show,
   ShowButton,
@@ -94,7 +95,7 @@ export const BureauxShow = (props) => {
           <TextField source="cin" label="CIN" />
           <TextField source="mdp" label="Mot de Passe" type="password" />
         </Tab>
-        <Tab label="Activité">
+        <Tab label="Caisse">
           <BooleanField source="actif" />
           <BooleanField source="visible" />
         </Tab>
@@ -109,9 +110,31 @@ export const BureauxShow = (props) => {
               <DeleteButton basePath="/ligcaiburs" label="Supprimer"  mutationMode="pessimistic"/>
             </Datagrid>
           </ReferenceManyField>
+          
           <CreateLigCaiBurButton />
         </Tab>
         <Tab label="Statistiques">
+        <ReferenceManyField label="Statistiques" reference="stats" target="bureauId">
+            <Datagrid fullWidth>
+              <ReferenceField label="Produit" source="associationId" reference="associations" link={false}>
+                <ReferenceField source="produitId" reference="produits">
+                  <TextField source="nom" />
+                </ReferenceField>
+              </ReferenceField>
+              <ReferenceField label="Prix" source="associationId" reference="associations" link={false}>
+                <ReferenceField source="produitId" reference="produits" link={false}>
+                  <NumberField source="prix" />
+                </ReferenceField>
+              </ReferenceField>
+              <ReferenceField label="Date d'échéance" source="associationId" reference="associations" link={false}>
+                <DateField source="dateecheance"/>
+              </ReferenceField>
+              <ReferenceField label="Remise" source="associationId" reference="associations" link={false}>
+                <TextField source="remise" />
+              </ReferenceField>
+              <BooleanField source="datevalide" label="Payé à l'avance"/>
+            </Datagrid>
+          </ReferenceManyField>
 
         </Tab>
       </TabbedShowLayout>

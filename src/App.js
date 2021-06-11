@@ -10,7 +10,7 @@ import { DevisesCreate, DevisesEdit, DevisesIcon, DevisesList, DevisesShow } fro
 import { LigCaiBursCreate, LigCaiBursEdit, LigCaiBursIcon, LigCaiBursList } from './components/LigCaiBurs';
 import MyLoginPage from './components/MyLoginPage';
 import { PaysCreate, PaysEdit, PaysIcon, PaysList } from './components/Pays';
-import { ProduitsCreate, ProduitsEdit, ProduitsIcon, ProduitsList } from './components/Produits';
+import { ProduitsCreate, ProduitsEdit, ProduitsIcon, ProduitsList, ProduitShow } from './components/Produits';
 import { UtiBureauCreate, UtiBureauEdit, UtiBureauIcon, UtiBureauList } from './components/Utibureaux';
 import { UtilisateursCreate, UtilisateursEdit, UtilisateursIcon, UtilisateursList } from './components/Utilisateurs';
 import myDataProvider from './dataProvider';
@@ -63,6 +63,7 @@ function App() {
         />
         <Resource
           name='produits'
+          show={ProduitShow}
           list={ProduitsList}
           edit={ProduitsEdit}
           create={ProduitsCreate}
@@ -129,6 +130,8 @@ function App() {
         />
         <Resource name="users"
           edit={ProfileEdit}
+        />
+        <Resource name="stats"
         />
       </Admin>
       {console.log(localStorage.getItem('decodedToken'))}

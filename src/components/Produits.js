@@ -8,8 +8,11 @@ import {
   List, NumberField, NumberInput,
   SimpleForm,
   TextField, TextInput,
-  useAuthenticated
+  useAuthenticated,
+  ShowButton,ListButton,Show,TopToolbar, TabbedShowLayout, TabbedShowLayoutTabs, Tab
 } from 'react-admin';
+
+export const ProduitsIcon = ShoppingCartIcon;
 
 const AssocierButton = ({ record }) => (
   <Button
@@ -25,13 +28,41 @@ const AssocierButton = ({ record }) => (
   </Button>
 );
 
-export const ProduitsIcon = ShoppingCartIcon;
+const ProduitShowNom = ({ record }) => {
+  return <span>Produit  {record ? `"${record.nom}"` : ''}</span>;
+};
+const ProduitShowActions = ({ basePath, data, resource }) => (
+  <TopToolbar>
+    <ListButton basePath="/produits" label="Produits" />
+    <EditButton basePath="/produits" label="Modifier" record={data} />
+    <DeleteButton basePath="/produits" label="Supprimer" record={data}  mutationMode="pessimistic"/>
+  </TopToolbar>
+);
+export const ProduitShow = (props) => {
+  useAuthenticated();
+  return (
+    <Show title={<ProduitShowNom />} actions={<ProduitShowActions />} {...props}>
+      <TabbedShowLayout syncWithLocation={false} tabs={<TabbedShowLayoutTabs variant="scrollable" {...props} />}>
+        <Tab label="Produit">
+          <TextField source="id" label="ID Système" />
+          <TextField source="nom" />
+          <NumberField source="prix" />
+        </Tab>
+        
+        <Tab label="Statistiques">
+
+        </Tab>
+      </TabbedShowLayout>
+    </Show>
+  );
+}
 
 export const ProduitsList = (props) => {
   useAuthenticated();
   return (
     <List {...props}>
       <Datagrid>
+        <ShowButton label="Afficher"/>
         <TextField source="nom" />
         <NumberField source="prix" />
         <AssocierButton label="Associer à un Bureau" />

@@ -1,16 +1,30 @@
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import WorkIcon from '@material-ui/icons/Work';
+
 import * as React from "react";
 import {
   Create, Datagrid,
   DeleteButton, Edit, EditButton,
-  List,
+  List,Button,Link,
   SimpleForm,
   TextField, TextInput,
   useAuthenticated
 } from 'react-admin';
 
 export const UtilisateursIcon = AccountBoxIcon;
-
+const AssocierButton = ({ record }) => (
+  <Button
+    component={Link}
+    to={{
+      pathname: '/utibureaux/create',
+      search: `?source=${JSON.stringify({ utilisateurId: record.id })}`,
+    }}
+  >
+    <div>
+      <WorkIcon />
+    </div>
+  </Button>
+);
 export const UtilisateursList = (props) => {
   useAuthenticated();
   return (
@@ -22,6 +36,7 @@ export const UtilisateursList = (props) => {
         <TextField source="prenom" label="Prenom" />
         <TextField source="email" label="Email" />
         <TextField source="cin" label="CIN" />
+        <AssocierButton label="Associer" />
         <EditButton basePath="/utilisateurs" label="Modifier"/>
         <DeleteButton basePath="/utilisateurs" label="Supprimer" mutationMode="pessimistic"/>
       </Datagrid>
@@ -33,7 +48,7 @@ export const UtilisateursList = (props) => {
 export const UtilisateursEdit = (props) => {
   useAuthenticated();
   return (
-    <Edit mutationMode="pessimistic" title="Edit bureau" {...props}>
+    <Edit mutationMode="pessimistic" title="Modifier utilisateur" {...props}>
       <SimpleForm>
         <TextInput source="id" disabled fullWidth />
         <TextInput source="ref" label="Réference" fullWidth />
@@ -50,7 +65,7 @@ export const UtilisateursEdit = (props) => {
 export const UtilisateursCreate = (props) => {
   useAuthenticated();
   return (
-    <Create title="Create bureau" {...props}>
+    <Create title="Créer un nouvel utilisateur" {...props}>
       <SimpleForm>
         <TextInput source="ref" label="Réference" fullWidth />
         <TextInput source="username" label="Username" fullWidth />

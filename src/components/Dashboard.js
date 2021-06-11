@@ -59,7 +59,7 @@ export default () => (
                         </div>
                         <div className="dash-item-body">
                             <h3>Utilisateurs</h3>
-                            <p>Total : 5</p>
+                            <p>Total : 6</p>
                         </div>
                     </div>
                 </Link>
@@ -70,7 +70,7 @@ export default () => (
                         </div>
                         <div className="dash-item-body">
                             <h3>Devises</h3>
-                            <p>Total : 3</p>
+                            <p>Total : 6</p>
                         </div>
                     </div>
                 </Link>
@@ -92,7 +92,7 @@ export default () => (
                         </div>
                         <div className="dash-item-body">
                             <h3>Pays</h3>
-                            <p>Total : 5</p>
+                            <p>Total : 6</p>
                         </div>
                     </div>
                 </Link>
